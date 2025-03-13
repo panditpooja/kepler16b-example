@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -23,12 +23,10 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Build
-      run: ./gradlew build
-    - name : Query
-      run : ./gradlew startFuseki owlQuery stopFuseki
+      run: ./gradlew.bat build
     - name: Upload
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: build
         path: build/
